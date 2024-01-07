@@ -18,9 +18,6 @@ const ToDo = ({text, description,type, updateToDo, deleteToDo}) => {
             TypeText='Ожидает выполнения'
             break;
     }
-    if (type===1) {
-        TypeText='Выполнено'
-    } 
     return (
         <div className="todo">
             <div className="text">{text}</div>
