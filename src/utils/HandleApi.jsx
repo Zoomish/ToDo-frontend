@@ -1,12 +1,11 @@
 import axios from 'axios'
 
-const baseUrl="https://todo-backend-1k9z.onrender.com"
+const baseUrl="http://localhost:5000"
 
 const getAllToDo=(setToDo)=>{
     axios
     .get(baseUrl)
     .then(({data})=>{
-        console.log('Data ---->', data);
         setToDo(data)
     })
     .catch((err)=>{
@@ -14,13 +13,13 @@ const getAllToDo=(setToDo)=>{
     })
 }
 
-const addToDo=(text,setText,setToDo)=>{
+const addToDo=(text,description,type,setNull,setToDo)=>{
     if (text!=='') {
         axios
-    .post(`${baseUrl}/save`, {text})
+    .post(`${baseUrl}/save`, {text,description,type})
     .then(({data})=>{
         console.log(data);
-        setText('')
+        setNull()
         getAllToDo(setToDo)
     })
     .catch((err)=>{
@@ -30,15 +29,13 @@ const addToDo=(text,setText,setToDo)=>{
     
 }
 
-
-const updateToDo=(toDoId, text, setToDo,setText,setIsUpdating)=>{
+const updateToDo=(toDoId, setToDo,text,description, type, setNull, setIsUpdating)=>{
     axios
-    .post(`${baseUrl}/update`, {_id:toDoId, text})
+    .post(`${baseUrl}/update`, {_id:toDoId, text,description,type})
     .then((data)=>{
-        setText('')
-        setIsUpdating=(false)
-        console.log(setIsUpdating);
+        setNull()
         getAllToDo(setToDo)
+        setIsUpdating=(false)
     })
     .catch((err)=>{
         console.log(err)
@@ -49,7 +46,6 @@ const deleteToDo=(_id, setToDo)=>{
     axios
     .post(`${baseUrl}/delete`, {_id})
     .then((data)=>{
-        console.log(data);
         getAllToDo(setToDo)
     })
     .catch((err)=>{

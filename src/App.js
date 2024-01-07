@@ -7,6 +7,8 @@ function App() {
 
   const [toDo, setToDo]=useState([])
   const [text,setText]=useState('')
+  const [description, setDescription]=useState('')
+  const [type, setType]=useState(1)
   const [isUpdating, setIsUpdating]=useState(false)
   const [toDoId,setToDoId]=useState('')
 
@@ -15,12 +17,19 @@ function App() {
     getAllToDo(setToDo)
 },[])
 
-  const updateMode=(_id,text)=>{
+  const updateMode=(_id,text,description,type)=>{
     setIsUpdating(true)
     setText(text)
+    setDescription(description)
+    setType(type)
     setToDoId(_id)
   }
-  console.log(isUpdating, setIsUpdating);
+
+  const setNull=()=>{
+    setText('')
+    setDescription('')
+    setType(1)
+  }
 
   return (
     <div className="App">
@@ -33,9 +42,21 @@ function App() {
           value={text}
           onChange={(e)=>setText(e.target.value)}
           />
+          <input 
+          type="text" 
+          placeholder='Enter description' 
+          value={description}
+          onChange={(e)=>setDescription(e.target.value)}
+          />
+          <input 
+          type="text" 
+          placeholder='Enter Type' 
+          value={type}
+          onChange={(e)=>setType(e.target.value)}
+          />
           <div 
           className="add" 
-          onClick={isUpdating?()=>updateToDo(toDoId, text, setToDo, setText, setIsUpdating):()=>addToDo(text, setText,setToDo)
+          onClick={isUpdating?()=>updateToDo(toDoId, setToDo,text,description, type, setNull, setIsUpdating):()=>addToDo(text,description,type,setNull,setToDo)
           }>
             {isUpdating?'Update':'Add'}
           </div>
@@ -45,7 +66,9 @@ function App() {
             <ToDo 
             key={item._id} 
             text={item.text}
-            updateToDo={()=>updateMode(item._id, item.text)}
+            description={item.description}
+            type={item.type}
+            updateToDo={()=>updateMode(item._id, item.text,item.description, item.type)}
             deleteToDo={()=>deleteToDo(item._id,setToDo)}
             />
           )}
