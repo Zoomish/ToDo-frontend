@@ -6,7 +6,7 @@ const ToDo = ({text, description,type, updateToDo, deleteToDo}) => {
     var TypeText=''
     switch (type) {
         case 3:
-            TypeText='Выполнено'
+            TypeText='Выполнено' 
             break;
         case 2:
             TypeText='В процессе'
@@ -18,11 +18,12 @@ const ToDo = ({text, description,type, updateToDo, deleteToDo}) => {
             TypeText='Ожидает выполнения'
             break;
     }
+
     return (
         <div className="todo">
             <div className="text">{text}</div>
             <div className="description">{description}</div>
-            <div className="Type">{TypeText}</div>
+            <div className="Type"><p>{TypeText}</p></div>
             <div className="icons">
                 <BiEdit className='icon' onClick={updateToDo}/>
                 <BiSolidTrash className='icon' onClick={deleteToDo}/>

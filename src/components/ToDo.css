@@ -1,11 +1,12 @@
 .text{
     font-size: 24px;
 }
-.description{
-    
+.description p{
+    max-height: 50vh;
+    box-sizing: content-box;
 }
 .Type{
     position: absolute;
     left: 50%;
-    top: 45%;
+    top: 40%;
 }
