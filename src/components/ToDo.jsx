@@ -1,12 +1,31 @@
 import React from 'react';
 import { BiEdit, BiSolidTrash } from "react-icons/bi";
+import './ToDo.css'
 
 const ToDo = ({text, description,type, updateToDo, deleteToDo}) => {
+    var TypeText=''
+    switch (type) {
+        case 3:
+            TypeText='Выполнено'
+            break;
+        case 2:
+            TypeText='В процессе'
+            break;
+        case 1:
+            TypeText='Ожидает выполнения'
+            break;
+        default:
+            TypeText='Ожидает выполнения'
+            break;
+    }
+    if (type===1) {
+        TypeText='Выполнено'
+    } 
     return (
         <div className="todo">
             <div className="text">{text}</div>
-            <div className="text">{description}</div>
-            <div className="text">{type}</div>
+            <div className="description">{description}</div>
+            <div className="Type">{TypeText}</div>
             <div className="icons">
                 <BiEdit className='icon' onClick={updateToDo}/>
                 <BiSolidTrash className='icon' onClick={deleteToDo}/>

@@ -35,6 +35,7 @@ const updateToDo=(toDoId, setToDo,text,description, type, setNull, setIsUpdating
     .then((data)=>{
         setNull()
         getAllToDo(setToDo)
+        console.log(setIsUpdating);
         setIsUpdating=(false)
     })
     .catch((err)=>{

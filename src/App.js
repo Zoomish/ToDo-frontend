@@ -17,7 +17,7 @@ function App() {
     getAllToDo(setToDo)
 },[])
 
-  const updateMode=(_id,text,description,type)=>{
+  const updateMode=(_id,text,description,type,setIsUpdating)=>{
     setIsUpdating(true)
     setText(text)
     setDescription(description)
@@ -29,6 +29,8 @@ function App() {
     setText('')
     setDescription('')
     setType(1)
+    setIsUpdating(false)
+
   }
 
   return (
@@ -68,7 +70,7 @@ function App() {
             text={item.text}
             description={item.description}
             type={item.type}
-            updateToDo={()=>updateMode(item._id, item.text,item.description, item.type)}
+            updateToDo={()=>updateMode(item._id, item.text,item.description, item.type,setIsUpdating)}
             deleteToDo={()=>deleteToDo(item._id,setToDo)}
             />
           )}
