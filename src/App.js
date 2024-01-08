@@ -36,25 +36,34 @@ function App() {
         <div className="top">
           <div className="inputes">
             <input
+            className="input"
+              id="task"
               type="text"
               placeholder="Enter Task"
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
             <input
+              className="input"
               type="text"
               placeholder="Enter description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-            <input
+            <div className="input item" data-title='
+            1 - Ожидает выполнения |
+            2 - В процессе |
+            3 - Выполнено 
+            '>
+              <input 
+              className="InputType"
               type="text"
               placeholder="Enter Type"
               value={type}
               onChange={(e) => setType(e.target.value)}
-            />
+              />
+            </div>
           </div>
-
           <div
             className="add"
             onClick={

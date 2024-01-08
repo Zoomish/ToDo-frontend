@@ -30,7 +30,8 @@ const addToDo=(text,description,type,setNull,setToDo)=>{
 }
 
 const updateToDo=(toDoId, setToDo,text,description, type, setNull, setIsUpdating)=>{
-    axios
+    if (text!==''&&description!=='') {
+        axios
     .post(`${baseUrl}/update`, {_id:toDoId, text,description,type})
     .then((data)=>{
         setNull()
@@ -41,6 +42,11 @@ const updateToDo=(toDoId, setToDo,text,description, type, setNull, setIsUpdating
     .catch((err)=>{
         console.log(err)
     })
+    }
+    else {
+        alert('Заполните все поля')
+    }
+    
 }
 
 const deleteToDo=(_id, setToDo)=>{

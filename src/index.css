@@ -30,19 +30,50 @@ h1{
   justify-content: center;
 }
 .inputes{
-  max-width: 100vw;
-  display: inline-block;
+  width: 80%;
+  display: flex;
+}
+.item{
+  box-sizing: border-box;
+  position: relative;
+  width: 120px;
+  align-items: end;
+}
+
+
+.item:after{
+  content: attr(data-title);
+  position: absolute;
+  top: -50px;
+  left: 40px;
+  width: 300px;
+  background: lightblue;
+  border-radius: 30px;
+  padding: 14px 20px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition:0.34s linear;
+  color: #fff;
+  box-shadow:0 5px 12px #ccc;
+  pointer-events: none;
+}
+
+.item:hover:after{
+  opacity: 1;
+  transform: translateY(0);  
 }
 
 input{
-  border: none;
-  outline: none;
   width: 120px;
   margin: 0 0.5rem;
   padding: 0 0.5rem;
+  border: none;
+  outline: none;
   border-bottom: 1px solid #000;
 }
-
+.InputType{
+  margin-top: 20px;
+}
 
 .add{
   font-size: 16px;
@@ -56,8 +87,20 @@ input{
   input{
     width: 90%;
   }
+  .item{
+    width: 100%;
+  }
+  .InputType{
+    margin-top: 0;
+  }
   .add{
     padding: 1.2rem 1.5rem;
+  }
+}
+
+@media (max-width:570px){
+  .inputes{
+    display: inline-block;
   }
 }
 

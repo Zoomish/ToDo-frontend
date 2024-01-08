@@ -21,11 +21,17 @@ const ToDo = ({text, description,type, updateToDo, deleteToDo}) => {
 
     return (
         <div className="todo">
-            <div className="text">{text}</div>
-            <div className="description">{description}</div>
-            <div className="Type"><p>{TypeText}</p></div>
+            <div className='info'>
+                <div className="text">{text}</div>
+                <div className="description">{description}</div>
+                <div className="Type"><p>{TypeText}</p></div>
+            </div>
+            
             <div className="icons">
-                <BiEdit className='icon' onClick={updateToDo}/>
+                <BiEdit className='icon' onClick={()=>{
+                    updateToDo();
+                    document.getElementById('task').focus()
+                }}/>
                 <BiSolidTrash className='icon' onClick={deleteToDo}/>
             </div>
         </div>
