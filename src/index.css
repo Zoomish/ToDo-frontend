@@ -86,7 +86,7 @@ input{
 @media (max-width:430px){
   input{
     width: 90%;
-    padding: 0.5rem 0.5rem;
+    padding: 1rem 0.5rem;
   }
   .item{
     width: 100%;
@@ -95,11 +95,20 @@ input{
     margin-top: 0;
   }
   .add{
-    padding: 2rem 1.5rem;
+    padding: 4rem 1.5rem;
+  }
+  .inputes{
+    display: inline-block;
   }
 }
 
-@media (max-width:570px){
+@media (max-width:570px) and (min-width:430px){
+  .add{
+    padding: 2rem 1.5rem;
+  }
+  input{
+    padding: 0.5rem 0.5rem;
+  }
   .inputes{
     display: inline-block;
   }
