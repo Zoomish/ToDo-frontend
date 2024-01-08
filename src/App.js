@@ -9,9 +9,10 @@ function App() {
   const [type, setType] = useState(1);
   const [isUpdating, setIsUpdating] = useState(false);
   const [toDoId, setToDoId] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getAllToDo(setToDo);
+    getAllToDo(setToDo,setIsLoading);
   }, []);
 
   const updateMode = (_id, text, description, type, setIsUpdating) => {
@@ -85,6 +86,27 @@ function App() {
           </div>
         </div>
         <div className="list">
+          {isLoading
+          ?<h1>Идет загрузка</h1>
+          :toDo.map((item) => (
+            <ToDo
+              key={item._id}
+              text={item.text}
+              description={item.description}
+              type={item.type}
+              updateToDo={() =>
+                updateMode(
+                  item._id,
+                  item.text,
+                  item.description,
+                  item.type,
+                  setIsUpdating
+                )
+              }
+              deleteToDo={() => deleteToDo(item._id, setToDo)}
+            />
+          ))
+        }
           {toDo.map((item) => (
             <ToDo
               key={item._id}

@@ -2,11 +2,13 @@ import axios from 'axios'
 
 const baseUrl="https://todo-backend-1k9z.onrender.com"
 
-const getAllToDo=(setToDo)=>{
+const getAllToDo=(setToDo,setIsLoading)=>{
+    setIsLoading(true)
     axios
     .get(baseUrl)
     .then(({data})=>{
         setToDo(data)
+        setIsLoading(false)
     })
     .catch((err)=>{
         console.log(err)
