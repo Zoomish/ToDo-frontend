@@ -13,6 +13,7 @@ const getAllToDo=(setToDo,setIsLoading)=>{
     .catch((err)=>{
         console.log(err)
     })
+    
 }
 
 const addToDo=(text,description,type,setNull,setToDo)=>{
@@ -31,15 +32,13 @@ const addToDo=(text,description,type,setNull,setToDo)=>{
     
 }
 
-const updateToDo=(toDoId, setToDo,text,description, type, setNull, setIsUpdating)=>{
+const updateToDo=(toDoId, setToDo,text,description, type, setNull,setIsLoading)=>{
     if (text!==''&&description!=='') {
         axios
     .post(`${baseUrl}/update`, {_id:toDoId, text,description,type})
     .then((data)=>{
         setNull()
-        getAllToDo(setToDo)
-        console.log(setIsUpdating);
-        setIsUpdating=(false)
+        getAllToDo(setToDo,setIsLoading)
     })
     .catch((err)=>{
         console.log(err)

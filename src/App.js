@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ToDo from "./components/ToDo";
 import { getAllToDo, addToDo, updateToDo, deleteToDo } from "./utils/HandleApi";
+import Loader from "./components/Loader/Loader";
 
 function App() {
   const [toDo, setToDo] = useState([]);
@@ -77,7 +78,7 @@ function App() {
                       description,
                       type,
                       setNull,
-                      setIsUpdating
+                      setIsLoading
                     )
                 : () => addToDo(text, description, type, setNull, setToDo)
             }
@@ -87,7 +88,7 @@ function App() {
         </div>
         <div className="list">
           {isLoading
-          ?<h1>Идет загрузка</h1>
+          ?<Loader/>
           :toDo.map((item) => (
             <ToDo
               key={item._id}
@@ -107,24 +108,6 @@ function App() {
             />
           ))
         }
-          {toDo.map((item) => (
-            <ToDo
-              key={item._id}
-              text={item.text}
-              description={item.description}
-              type={item.type}
-              updateToDo={() =>
-                updateMode(
-                  item._id,
-                  item.text,
-                  item.description,
-                  item.type,
-                  setIsUpdating
-                )
-              }
-              deleteToDo={() => deleteToDo(item._id, setToDo)}
-            />
-          ))}
         </div>
       </div>
     </div>
