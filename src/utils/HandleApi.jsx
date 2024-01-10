@@ -16,14 +16,14 @@ const getAllToDo=(setToDo,setIsLoading)=>{
     
 }
 
-const addToDo=(text,description,type,setNull,setToDo)=>{
+const addToDo=(text,description,type,setNull,setToDo,setIsLoading)=>{
     if (text!=='') {
         axios
     .post(`${baseUrl}/save`, {text,description,type})
     .then(({data})=>{
         console.log(data);
         setNull()
-        getAllToDo(setToDo)
+        getAllToDo(setToDo,setIsLoading)
     })
     .catch((err)=>{
         console.log(err)
@@ -50,11 +50,11 @@ const updateToDo=(toDoId, setToDo,text,description, type, setNull,setIsLoading)=
     
 }
 
-const deleteToDo=(_id, setToDo)=>{
+const deleteToDo=(_id, setToDo,setIsLoading)=>{
     axios
     .post(`${baseUrl}/delete`, {_id})
     .then((data)=>{
-        getAllToDo(setToDo)
+        getAllToDo(setToDo,setIsLoading)
     })
     .catch((err)=>{
         console.log(err)

@@ -80,7 +80,7 @@ function App() {
                       setNull,
                       setIsLoading
                     )
-                : () => addToDo(text, description, type, setNull, setToDo)
+                : () => addToDo(text, description, type, setNull, setToDo,setIsLoading)
             }
           >
             {isUpdating ? "Update" : "Add"}
@@ -104,7 +104,7 @@ function App() {
                   setIsUpdating
                 )
               }
-              deleteToDo={() => deleteToDo(item._id, setToDo)}
+              deleteToDo={() => deleteToDo(item._id, setToDo,setIsLoading)}
             />
           ))
         }
